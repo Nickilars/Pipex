@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:58:23 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/24 10:02:41 by nrossel          ###   ########.fr       */
+/*   Created: 2022/10/31 11:21:49 by nrossel           #+#    #+#             */
+/*   Updated: 2022/12/15 19:27:38 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../include/libft.h"
 
-# include "./libft/include/libft.h"
-# include <sys/types.h>
-# include <sys/wait.h>
-
-typedef struct s_data
+char	*ft_strdup(const char *s1)
 {
-	int		fd1[2];
-	int		fd2[2];
-	int		infile;
-	int		outfile;
-	int		status;
-	pid_t	pid1;
-	pid_t	pid2;
-	char	*cmd;
-	char	buffer[256];
-	char	**args;
-	char	**envp;
-}	t_data;
+	int		i;
+	int		len;
+	char	*s_cpy;
 
-#endif
+	i = 0;
+	len = ft_strlen(s1);
+	s_cpy = malloc(len * sizeof(char) + 1);
+	if (!s_cpy)
+		return (0);
+	while (i <= len && s1[i])
+	{
+		s_cpy[i] = s1[i];
+		i++;
+	}
+	s_cpy[i] = 0;
+	return (s_cpy);
+}

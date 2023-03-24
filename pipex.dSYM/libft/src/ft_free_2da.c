@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_free_2da.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:58:23 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/24 10:02:41 by nrossel          ###   ########.fr       */
+/*   Created: 2022/12/30 08:50:21 by nrossel           #+#    #+#             */
+/*   Updated: 2023/02/17 13:47:32 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../include/libft.h"
 
-# include "./libft/include/libft.h"
-# include <sys/types.h>
-# include <sys/wait.h>
-
-typedef struct s_data
+int	ft_free_2da(char **tab, int len, char *error_msg)
 {
-	int		fd1[2];
-	int		fd2[2];
-	int		infile;
-	int		outfile;
-	int		status;
-	pid_t	pid1;
-	pid_t	pid2;
-	char	*cmd;
-	char	buffer[256];
-	char	**args;
-	char	**envp;
-}	t_data;
+	int	i;
 
-#endif
+	i = 0;
+	if (!tab)
+		return (0);
+	while (i < len)
+		free(tab[i++]);
+	free (tab);
+	if (error_msg != NULL)
+		ft_free_arrays(NULL, NULL, error_msg);
+	return (1);
+}

@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:58:23 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/24 10:02:41 by nrossel          ###   ########.fr       */
+/*   Created: 2022/12/30 08:46:39 by nrossel           #+#    #+#             */
+/*   Updated: 2023/02/17 09:05:31 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../include/libft.h"
 
-# include "./libft/include/libft.h"
-# include <sys/types.h>
-# include <sys/wait.h>
-
-typedef struct s_data
+int	ft_islower(int c)
 {
-	int		fd1[2];
-	int		fd2[2];
-	int		infile;
-	int		outfile;
-	int		status;
-	pid_t	pid1;
-	pid_t	pid2;
-	char	*cmd;
-	char	buffer[256];
-	char	**args;
-	char	**envp;
-}	t_data;
-
-#endif
+	if ('A' <= c && c <= 'Z')
+		return (1);
+	return (0);
+}

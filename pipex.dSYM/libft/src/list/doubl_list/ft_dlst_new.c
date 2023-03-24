@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_dlst_new.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:58:23 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/24 10:02:41 by nrossel          ###   ########.fr       */
+/*   Created: 2023/02/13 18:10:54 by nrossel           #+#    #+#             */
+/*   Updated: 2023/02/21 13:37:57 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../../../include/libft.h"
 
-# include "./libft/include/libft.h"
-# include <sys/types.h>
-# include <sys/wait.h>
-
-typedef struct s_data
+t_dlist	*ft_dlst_new(void)
 {
-	int		fd1[2];
-	int		fd2[2];
-	int		infile;
-	int		outfile;
-	int		status;
-	pid_t	pid1;
-	pid_t	pid2;
-	char	*cmd;
-	char	buffer[256];
-	char	**args;
-	char	**envp;
-}	t_data;
+	t_dlist	*new_list;
 
-#endif
+	new_list = malloc(sizeof(t_dlist));
+	if (!new_list)
+		return (NULL);
+	new_list->head = NULL;
+	new_list->tail = NULL;
+	new_list->len = 0;
+	return (new_list);
+}

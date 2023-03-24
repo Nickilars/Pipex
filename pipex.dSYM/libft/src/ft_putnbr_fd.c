@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:58:23 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/24 10:02:41 by nrossel          ###   ########.fr       */
+/*   Created: 2022/11/01 13:04:31 by nrossel           #+#    #+#             */
+/*   Updated: 2022/12/15 19:27:22 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../include/libft.h"
 
-# include "./libft/include/libft.h"
-# include <sys/types.h>
-# include <sys/wait.h>
-
-typedef struct s_data
+void	ft_putnbr_fd(int n, int fd)
 {
-	int		fd1[2];
-	int		fd2[2];
-	int		infile;
-	int		outfile;
-	int		status;
-	pid_t	pid1;
-	pid_t	pid2;
-	char	*cmd;
-	char	buffer[256];
-	char	**args;
-	char	**envp;
-}	t_data;
+	long long int	nb;
 
-#endif
+	nb = n;
+	if (nb == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else if (nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-nb, fd);
+	}
+	else if (nb > 9)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putchar_fd((nb % 10) + '0', fd);
+	}
+	else if (0 <= nb && nb < 10)
+		ft_putchar_fd(nb + '0', fd);
+}
