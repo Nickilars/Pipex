@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:44:09 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/27 14:31:31 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/05 13:24:46 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,12 @@ char	**pipex_split(char const *s, char c)
 	split[j] = 0;
 	return (split);
 }
+
+// int main(void)
+// {
+	// char *str = "Salut:la:compagnie";
+	// char **ret = pipex_split(str, ':');
+	// int i = 0;
+	// while (ret[i])
+		// printf("%s", ret[i++]);
+// }
