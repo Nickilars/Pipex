@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:30:56 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/06 11:08:54 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/06 12:37:44 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,21 @@ static char	*if_cmd_work(char *cmd, char **paths)
 }
 
 /* ----------------------- 3.lancer execve ------------------------- */
-static void	ft_execve(char *cmd, t_data *cmd, int fd_in, int fd_out, char **envp)
+static void	ft_execve(char *cmd, int in, int out, char **env)
 {
-	cmd->cmd.path = find_path(envp);
-	cmd->args = ft_split(cmd, ' ');
-	cmd->args[0] = if_cmd_work(cmd->args[0], data->cmd.path);
-	dup2(fd_in, 0);
-	dup2(fd_out, 1);
-	execve(args[0], args, envp);
+	char	**path;
+	char	**args;
+
+	path = find_path(env);
+	args = ft_split(cmd, ' ');
+	args[0] = if_cmd_work(args[0], path);
+	dup2(in, 0);
+	dup2(out, 1);
+	execve(args[0], args, env);
 }
 
 /* ----------------------- 4.premier processus ------------------------- */
-void	ft_first_process(char *cmd, t_data *data, char **envp, int index);
+void	ft_first_process(char *cmd, t_data *data, char **envp, int index)
 {
 	int	pid;
 
@@ -75,19 +78,19 @@ void	ft_first_process(char *cmd, t_data *data, char **envp, int index);
 		if (index != 0)
 		{
 			ft_close_pipe(data->pipe1[0], data->pipe2[1]);
-			ft_execve(cmd, data, data->pipe2[0], data->pipe1[1] envp);
+			ft_execve(cmd, data->pipe2[0], data->pipe1[1], envp);
 		}
 		else
 		{
 			ft_close_pipe(data->pipe1[0], data->pipe2[0]);
-			ft_execve(cmd, data, data->infile, data->pipe1[1], envp);
+			ft_execve(cmd, data->infile, data->pipe1[1], envp);
 		}
 	}
 	ft_new_pipe(&data->pipe1);
 }
 
 /* ----------------------- 5.second processus ------------------------- */
-void	ft_second_process(char *cmd, t_data *data, char **envp);
+void	ft_second_process(char *cmd, t_data *data, char **envp)
 {
 	int	pid;
 
@@ -100,7 +103,7 @@ void	ft_second_process(char *cmd, t_data *data, char **envp);
 	if (pid == 0)
 	{
 		ft_close_pipe(data->pipe2[0], data->pipe1[1]);
-		ft_execve(cmd, data, data->pipe1[0], data->pipe2[1] envp);
+		ft_execve(cmd, data->pipe1[0], data->pipe2[1], envp);
 	}
 	ft_new_pipe(&data->pipe2);
 }

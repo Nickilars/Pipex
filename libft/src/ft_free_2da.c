@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 08:50:21 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/27 15:08:23 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/06 12:40:51 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ int	ft_free_2da(char **tab, char *error_msg)
 	if (tab)
 		free (tab);
 	if (error_msg != NULL)
-	{
 		ft_free_arrays(NULL, NULL, error_msg);
-		return (1);
-	}
 	return (0);
 }

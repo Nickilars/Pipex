@@ -8,6 +8,8 @@ NAME		= pipex
 
 SRC		=	main.c \
 			utils.c \
+			utils_2.c \
+			utils_3.c \
 			pipex_split.c
 
 SRCS 	= 	$(addprefix $(SRCS_PATH)/,$(SRC))

@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 08:44:20 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/06 11:31:22 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/06 11:42:08 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	check_output(t_data data, int ac)
 	}
 }
 
+/* ------------------ 3.sortie final ------------------- */
 void	ft_write_outfile(int outfile, int fd_in)
 {
 	char	buffer[1];

@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 16:04:11 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/01 15:58:38 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/06 12:40:30 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_clist
 	t_list			*head;
 }	t_clist;
 
-int			ft_exit(int i);
 int			ft_itob(int nbr);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
@@ -60,8 +59,9 @@ int			ft_nbrlen_d(int nbr);
 int			ft_nbrlen_exa(int nbr);
 long		ft_atoi(const char *str);
 int			ft_nbrlen_b(unsigned int nbr);
+int			ft_exit(int i, char *error_msg);
 int			ft_power(int nbr, unsigned int power);
-int			ft_free_2da(char **tab, int len, char *error_msg);
+int			ft_free_2da(char **tab, char *error_msg);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_free_arrays(char *str1, char *str2, char *error_msg);
