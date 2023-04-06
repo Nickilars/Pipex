@@ -6,15 +6,18 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 09:24:05 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/01 10:36:03 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/06 11:27:27 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_exit(int i)
+int	ft_exit(int i, char *error_msg)
 {
 	if (i != 1)
-		write (2, "Error\n", 6);
+	{
+		putendl(error_msg, 2);
+		exit(1);
+	}
 	exit (0);
 }

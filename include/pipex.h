@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:58:23 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/06 09:42:20 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/06 11:09:21 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_new_pipe(int (*fd)[2]);
 void	ft_close_pipe(int fd1, int fd2);
 void	ft_init(t_data *data, char **av, int ac);
 void	check_args(int ac, char *infile, char *outfile);
-void	ft_first_process(char *cmd, t_data *data, char **envp);
+void	ft_first_process(char *cmd, t_data *data, char **envp, int index);
 void	ft_second_process(char *cmd, t_data *data, char **envp);
 
 char	**pipex_split(const char *s, char c);
