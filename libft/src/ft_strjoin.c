@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 10:02:02 by nrossel           #+#    #+#             */
-/*   Updated: 2023/03/27 15:46:10 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/13 09:49:26 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char		*str;
 
 	len_max = ((ft_strlen(s1) + ft_strlen(s2)) + 1);
-	str = ft_calloc(len_max, sizeof(char));
+	str = (char *)malloc(len_max * sizeof(char));
 	if (!str)
 		return (NULL);
-	i = -1;
-	j = -1;
-	while (s1[i] && ++i < len_max)
+	i = 0;
+	j = 0;
+	while (s1[i] && i < len_max)
+	{
 		str[i] = s1[i];
-	while (s2[i] && ++j < len_max)
+		i++;
+	}
+	while (s2[j] && j < len_max)
+	{
 		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = 0;
 	return (str);
 }
 

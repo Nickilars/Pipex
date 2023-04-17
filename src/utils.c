@@ -6,37 +6,43 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:16:21 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/06 12:39:03 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/17 11:18:59 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
 /* ----------------------- 1.initialisation ------------------------- */
-void	ft_init(t_data *data, char **av, int ac)
+int	ft_init(int in_or_out, char **av, int ac)
 {
-	data->status = 0;
-	ft_new_pipe(&data->pipe1);
-	ft_new_pipe(&data->pipe2);
-	data->infile = open(av[1], O_RDONLY);
-	if (access(av[ac - 1], F_OK) == 0)
-		unlink(av[ac - 1]);
-	data->outfile = open(av[ac - 1], O_CREAT | O_RDONLY | O_TRUNC | 0644);
-	if (data->infile < 0 || data->outfile < 0)
+	int	in;
+	int	out;
+
+	if (in_or_out == 0)
 	{
-		perror("infile | outfile opening fail");
-		exit (1);
+		(void) ac;
+		in = open(av[1], O_RDONLY);
+		if (in < 0)
+			ft_exit(1, "infile opening fail");
+		return (in);
 	}
+	if (in_or_out == 1)
+	{
+		if (access(av[ac - 1], F_OK) == 0)
+			unlink(av[ac - 1]);
+		out = open(av[ac - 1], O_CREAT | O_WRONLY, 0777);
+		if (out < 0)
+			ft_exit(1, "outfile opening fail");
+		return (out);
+	}
+	return (-1);
 }
 
 /* ----------------------- 2.check si fichier vide ------------------------- */
 void	is_empty(char *str, char *file)
 {
 	if (!str || !*str)
-	{
-		ft_putendl_fd(file, 2);
-		exit(1);
-	}
+		ft_exit(1, file);
 }
 
 /* ----------------------- 3.nouveau pipe ------------------------- */

@@ -135,6 +135,6 @@ clean :
 		$(RM) *.o $(SRC_PATH)*.o $(GNL_SRC_FOLDER)*.o $(PRINTF_SRC_FOLDER)*.o
 
 fclean : clean
-		$(RM) $(NAME)
+		@$(RM) $(NAME)
 
 .PHONY: all re clean fclean

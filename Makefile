@@ -9,8 +9,7 @@ NAME		= pipex
 SRC		=	main.c \
 			utils.c \
 			utils_2.c \
-			utils_3.c \
-			pipex_split.c
+			utils_3.c
 
 SRCS 	= 	$(addprefix $(SRCS_PATH)/,$(SRC))
 OBJS	=	$(SRCS:.c=.o)
@@ -26,9 +25,9 @@ _END	=	\e[0m
 
 $(NAME):	$(OBJS) libft/libft.a
 			@printf "libft			[$(_BLUE)✓$(_END)]\n"
-			@printf "pipex objects	[$(_BLUE)✓$(_END)]\n"
+			@printf "pipex objects		[$(_BLUE)✓$(_END)]\n"
 			@gcc $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBFT) -o $(NAME)
-			@printf "pipex		[$(_BLUE)✓$(_END)]\n"
+			@printf "pipex			[$(_BLUE)✓$(_END)]\n"
 
 libft/libft.a : 
 			@$(MAKE) -C ./libft

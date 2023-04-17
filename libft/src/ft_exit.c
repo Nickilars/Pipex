@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 09:24:05 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/06 12:41:45 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/17 09:31:23 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_exit(int i, char *error_msg)
 {
-	if (i != 1)
+	if (i != 0)
 	{
 		ft_putendl_fd(error_msg, 2);
 		exit(1);
