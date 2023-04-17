@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:16:21 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/17 11:18:59 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/17 15:53:17 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ void	is_empty(char *str, char *file)
 }
 
 /* ----------------------- 3.nouveau pipe ------------------------- */
-void	ft_new_pipe(int (*fd)[2])
+void	ft_new_pipe(int (*fd)[2], int new_pipe)
 {
-	ft_close_pipe((*fd)[0], (*fd)[1]);
+	if (new_pipe != 1)
+		ft_close_pipe((*fd)[0], (*fd)[1]);
 	pipe((*fd));
 }
 

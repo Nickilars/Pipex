@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 09:48:28 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/17 11:39:59 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/17 15:33:50 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ int	main(int ac, char **av, char **envp)
 	int		status;
 
 	check_args(ac, av[1], av[ac - 1]);
-	ft_new_pipe(&pipe1);
-	ft_new_pipe(&pipe2);
+	ft_new_pipe(&pipe1, 1);
+	ft_new_pipe(&pipe2, 1);
+	// printf("Pipe1 on main (before init ft) = %d\n", pipe1[0]);
 	pipe1[0] = ft_init(0, av, ac);
-	printf("Pipe1 on main = %d\n", pipe1[0]);
+	// printf("Pipe1 on main (after init ft) = %d\n", pipe1[0]);
+	// printf("Pipe2 on main = %d\n", pipe2[0]);
 	i = 0;
 	while (i < ac - 3)
 	{

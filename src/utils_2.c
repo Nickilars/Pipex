@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:30:56 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/17 11:41:39 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/17 15:34:44 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ static void	ft_execve(char *cmd, int in, int out, char **env, int v)
 {
 	char	**path;
 	char	**args;
+	(void)	v;
 
 	path = find_path(env);
 	args = ft_split(cmd, ' ');
 	args[0] = if_cmd_work(args[0], path);
 	dup2(in, 0);
 	dup2(out, 1);
-	ft_test(in, v);
+	// ft_test(in, v);
 	execve(args[0], args, env);
 	ft_exit(1, "Error execve");
 }
@@ -82,7 +83,7 @@ void	first_process(char *cmd, int (*pipe1)[2], int (*pipe2)[2], char **envp)
 		ft_close_pipe((*pipe1)[1], (*pipe2)[0]);
 		ft_execve(cmd, (*pipe1)[0], (*pipe2)[1], envp, 1);
 	}
-	ft_new_pipe(pipe1);
+	ft_new_pipe(pipe1, 0);
 }
 
 /* ----------------------- 5.second processus ------------------------- */
@@ -98,5 +99,5 @@ void	secon_process(char *cmd, int (*pipe1)[2], int (*pipe2)[2], char **envp)
 		ft_close_pipe((*pipe1)[0], (*pipe2)[1]);
 		ft_execve(cmd, (*pipe2)[0], (*pipe1)[1], envp, 2);
 	}
-	ft_new_pipe(pipe2);
+	ft_new_pipe(pipe2, 0);
 }

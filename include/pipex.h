@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:58:23 by nrossel           #+#    #+#             */
-/*   Updated: 2023/04/17 11:10:10 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/04/17 15:17:12 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 int		ft_init(int in_or_out, char **av, int ac);
 
 void	ft_test(int fd_in, int v);
-void	ft_new_pipe(int (*fd)[2]);
 void	is_empty(char *str, char *file);
 void	ft_close_pipe(int fd1, int fd2);
+void	ft_new_pipe(int (*fd)[2], int new_pipe);
 void	ft_write_outfile(int fd_in, int ac, char **av);
 void	check_args(int ac, char *infile, char *outfile);
 void	check_output(int ac, char **av, int pipe1, int pipe2);
